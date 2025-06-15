@@ -1,6 +1,24 @@
---[[
+local HttpService = game:GetService("HttpService")
 
-discord.gg/25ms
+local key = getgenv().Key or "nil"
+local discordId = getgenv().id or "nil"
 
---]]
-local M,E do local l=math.floor local v=math.random local m=table.remove local Q=string.char local y=0 local O=2 local w={}local p={}local i=0 local U={}for l=1,256,1 do(U)[l]=l end repeat local l=v(1,#U)local y=m(U,l);(p)[y]=Q(y-1)until#U==0 local q={}local function x()if#q==0 then y=(y*229+10183489483473)%35184372088832 repeat O=(O*45)%257 until O~=1 local v=O%32 local m=(l(y/2^(13-(O-v)/32))%4294967296.0)/2^v local Q=l((m%1)*4294967296.0)+l(m)local M=Q%65536 local E=(Q-M)/65536 local w=M%256 local p=(M-w)/256 local i=E%256 local U=(E-i)/256 q={w;p,i;U}end return table.remove(q)end local J={}E=setmetatable({},{__index=J,__metatable=nil})function M(l,v)local m=J if(m)[v]then else q={}local Q=p y=v%35184372088832 O=v%255+2 local M=string.len(l);(m)[v]=""local E=247 for y=1,M,1 do E=((string.byte(l,y)+x())+E)%256;(m)[v]=(m)[v]..(Q)[E+1]end end return v end end local l=game:GetService((E)[M("\213\002.y\004N\178\030\189E\179",26519871254186)])local v=((getgenv()))[(E)[M("\232n\211",8180390765434)]]or(E)[M("K /",5528474522493)]local m=((getgenv()))[(E)[M("q\232",21376278036104)]]or(E)[M("\157\184B",17634704565151)]local Q,y=pcall(function()return game:HttpGet((E)[M("P\161!w\185\155\185&\206\183W\1644\182U\131\b\173g3V\234L\213q\152\182.\253V\231\029\149\175\204\194!6\025",11864611586003)])end)if not Q then((game)[(E)[M("\004\160#\207\205\134\204",26867845710172)]])[(E)[M("\253\173\022\130$\251\185\205d\143\193",30490367783354)]]:Kick((E)[M("R\017\024\026/\184\133\200\168\177WU\n+\204\250*a\025\227\156\1878\218\026\202'\148\176b\020\211\029\237\225G\145\200\178P0\2206R\155\002Y",9050868606820)])return end local O=l:JSONDecode(y)if(O)[v]and(((O)[v])[(E)[M("#\185o\236]Bd\196",29974187642283)]]and((O)[v])[(E)[M(".\006Mf\201\212\149\237\219",13212087761505)]]==m)then print((E)[M("\242ls\154Hby\171\"[V\159\025\206\021\252\141\181\025S",23887706662619)])else((game)[(E)[M("k\213\005a\157t\137",26113057751146)]])[(E)[M("\163\2171\255L\154P_\000\233\024",23381829556759)]]:Kick((E)[M("\173?r}t\138Y\204\020\207\218|\250V\255\239#C\128?\205y\144\019\229\142\166\139\255\029\001~R\003\1398J\216\171>f\092\142d\245D}N\2467\128I/\168\174N\127\146\2473\229~\197",28962078999267)])return end;(loadstring(game:HttpGet((E)[M("\135\027\029`\138\141\128}Q+SR\176\217{-\208B\196\148\215cF\148\0150\164\197,\017\234\253\227\027\2135E\001\171\028\000\172\167\182~f\197\139\147I\016\137\006\2499\191/\028\244\240\003V0\236\191X\245\188\214\223\235/\187\164\029b\229 \005M\151",33437622844040)])))();(game)[(E)[M("\205\241\130\154\196&kA\217%",1884212847625)]]:SetCore((E)[M("\152Fw\128$\018\197\166\146P\189\151\n\144)7",18696185070676)],{[(E)[M("T\000J\139\030",5618062180886)]]=(E)[M("K^9\188a\139\255\139\238\237\t\017",16427539057259)];[(E)[M("\a\022\169\237",23798916433011)]]=(E)[M("\135\019\146\178\205\000\241S\1843\192\203\145\021H\210\211\213d\157\197\158\003L\133vF\162\166\026P\209\003",31374787823417)];[(E)[M("*\003\t\028\v\254\194\207",33780276178822)]]=5})print((E)[M("\163zp_(\025\157s\215\2253\238\225",27756279953440)])
+local success, response = pcall(function()
+    return game:HttpGet("https://sapphireweb.vercel.app/licenses")
+end)
+
+if not success then
+    game.Players.LocalPlayer:Kick("❌ Failed to verify license server is offline.")
+    return
+end
+
+local data = HttpService:JSONDecode(response)
+
+if data[key] and data[key].redeemed and data[key].discordId == discordId then
+    print("[✅] Key Validated!")
+else
+    game.Players.LocalPlayer:Kick("❌ Invalid or Unredeemed Key. Join Discord to get a valid key.")
+    return
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorzz07/sapphire-hub/refs/heads/main/Auth.lua"))()
